@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}  
+
+{% block title %}Search Results{% endblock %}  
+
+{% block content %}  
+<h1>Search Results</h1>  
+<hr>
+<p>Results for: "{{ query }}"</p>  
+
+{% if tweets %}  
+    <ul class="list-group">  
+        {% for tweet in tweets %}  
+            <li class="list-group-item">  
+                <strong>{{ tweet.user.username }}</strong>: {{ tweet.text }} <br>  
+                <small class="text-muted">Posted on {{ tweet.created_at }}</small>  
+            </li>  
+        {% endfor %}  
+    </ul>  
+{% else %}  
+    <div class="alert alert-warning" role="alert">  
+        No tweets found matching your search.  
+    </div>  
+{% endif %}  
+
+<a href="{% url 'tweet_list' %}" class="btn btn-primary mt-3">Back to Tweet List</a>  
+{% endblock %}
